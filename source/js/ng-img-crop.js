@@ -13,6 +13,7 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
       resultImageSize: '=',
       resultImageFormat: '@',
       resultImageQuality: '=',
+        resultImageFillTransparent: '@',
 
       onChange: '&',
       onLoadBegin: '&',
@@ -95,6 +96,10 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
         cropHost.setResultImageFormat(scope.resultImageFormat);
         updateResultImage(scope);
       });
+        scope.$watch('resultImageFillTransparent',function(){
+            cropHost.setResultImageFillTransparent(scope.resultImageFillTransparent);
+            updateResultImage(scope);
+        });
       scope.$watch('resultImageQuality',function(){
         cropHost.setResultImageQuality(scope.resultImageQuality);
         updateResultImage(scope);

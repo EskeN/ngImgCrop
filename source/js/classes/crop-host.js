@@ -40,6 +40,9 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
     // Result Image type
     var resImgFormat='image/png';
 
+    // Result Image Fill transparent color
+      var resImgFillTrasparent='rgb(250, 250, 250)';
+
     // Result Image quality
     var resImgQuality=null;
 
@@ -171,6 +174,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
       temp_canvas.width = resImgSize;
       temp_canvas.height = resImgSize;
       if(image!==null){
+        temp_ctx.fillStyle = resImgFillTrasparent;
         temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()/2)*(image.height/ctx.canvas.height), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.height/ctx.canvas.height), 0, 0, resImgSize, resImgSize);
       }
       if (resImgQuality!==null ){
@@ -299,6 +303,10 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
 
     this.setResultImageFormat=function(format) {
       resImgFormat = format;
+    };
+
+    this.setResultImageFillTransparent=function(color) {
+        resImgFillTrasparent = color;
     };
 
     this.setResultImageQuality=function(quality){
